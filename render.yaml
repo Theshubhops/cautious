@@ -1,0 +1,29 @@
+
+services:
+  - type: web
+    name: backend
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm run start"
+    healthCheckPath: "/api/health"
+    envVars:
+      - key: NODE_VERSION
+        value: 20.12.2
+      - fromGroup: backend-env
+    buildFilter:
+      paths:
+        - backend/**
+
+  - type: web
+    name: frontend
+    plan: free
+    env: static
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "./dist"
+    envVars:
+      - key: NODE_VERSION
+        value: 20.12.2
+    buildFilter:
+      paths:
+        - frontend/**
