@@ -1,4 +1,3 @@
-
 {
   "version": 2,
   "builds": [
@@ -8,10 +7,7 @@
     },
     {
       "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "options": {
-        "buildCommand": "npm run build"
-      }
+      "use": "@vercel/static-build"
     }
   ],
   "rewrites": [

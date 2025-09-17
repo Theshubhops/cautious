@@ -1,11 +1,12 @@
-
 services:
   - type: web
     name: backend
     env: node
     plan: free
-    buildCommand: "npm install"
-    startCommand: "npm run start"
+    # The build command is run from the root of the repo.
+    buildCommand: "cd backend && npm install"
+    # The start command is run from the root as well.
+    startCommand: "cd backend && npm run start"
     healthCheckPath: "/api/health"
     envVars:
       - key: NODE_VERSION
@@ -19,8 +20,9 @@ services:
     name: frontend
     plan: free
     env: static
-    buildCommand: "npm install && npm run build"
-    staticPublishPath: "./dist"
+    # Build command run from the root of the repo.
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: "./frontend/dist"
     envVars:
       - key: NODE_VERSION
         value: 20.12.2
